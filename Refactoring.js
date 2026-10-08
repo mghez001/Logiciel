@@ -77,8 +77,15 @@ function getPossibleMoves(row, col) {
         isMoveValid(moves, row - 1, col + 1);
     }
 
-
     return moves
+}
+
+function switchPlayer() {
+    if (currentPlayer === "white") {
+        currentPlayer = "black"
+    } else {
+        currentPlayer = "white"
+    }
 }
 
 function movePiece(targetRow, targetCol) {
@@ -113,11 +120,7 @@ function movePiece(targetRow, targetCol) {
 
     selectedPiece = null
 
-    if (currentPlayer === "white") {
-        currentPlayer = "black"
-    } else {
-        currentPlayer = "white"
-    }
+    switchPlayer()
 
     checkGameOver()
 }
