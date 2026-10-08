@@ -128,19 +128,16 @@ function movePiece(targetRow, targetCol) {
 function checkPromotion(row, col) {
     const piece = board[row][col]
 
-    if (piece === "white") {
-        if (row === 0) {
-            board[row][col] = "white-king"
-            console.log("White piece became a king")
-        }
+    if (piece === "white" && row === 0) {
+        board[row][col] = "white-king"
+        console.log("White piece became a king")
     }
 
-    if (piece === "black") {
-        if (row === 7) {
-            board[row][col] = "black-king"
-            console.log("Black piece became a king")
-        }
+    if (piece === "black" && row === 7) {
+        board[row][col] = "black-king"
+        console.log("Black piece became a king")
     }
+
 }
 
 function countPieces(player) {
