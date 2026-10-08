@@ -1,5 +1,5 @@
 
-const randomChoose= (x, y) => [x,y][Math.random() < 0.5 ? 0 : 1];
+const randomChoose= (...x) => x[Math.floor(Math.random() * x.length)];
 
 const a = randomChoose("foo", "bar");
 const b = randomChoose(1, 2);
