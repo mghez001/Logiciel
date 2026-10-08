@@ -9,11 +9,15 @@ const board = [
     ["white", null, "white", null, "white", null, "white", null]
 ]
 
+const MAX_SIZE = 8
+const FIRST_ROWS = 3
+const LAST_ROWS = 5
+
 let currentPlayer = "white"
 let selectedPiece = null
 let gameOver = false
 
-function isInsideBoard(row, col) { return row >= 0 && row < 8 && col >= 0 && col < 8}
+function isInsideBoard(row, col) { return row >= 0 && row < MAX_SIZE && col >= 0 && col < MAX_SIZE}
 
 function isPlayerPiece(piece, player) {
     if (piece === null) {
@@ -146,8 +150,8 @@ function checkPromotion(row, col) {
 function countPieces(player) {
     let count = 0
 
-    for (let row = 0; row < 8; row++) {
-        for (let col = 0; col < 8; col++) {
+    for (let row = 0; row < MAX_SIZE; row++) {
+        for (let col = 0; col < MAX_SIZE; col++) {
             if (isPlayerPiece(board[row][col], player)) {
                 count = count + 1
             }
@@ -173,22 +177,22 @@ function checkGameOver() {
 }
 
 function restartGame() {
-    for (let row = 0; row < 8; row++) {
-        for (let col = 0; col < 8; col++) {
+    for (let row = 0; row < MAX_SIZE; row++) {
+        for (let col = 0; col < MAX_SIZE; col++) {
             board[row][col] = null
         }
     }
 
-    for (let row = 0; row < 3; row++) {
-        for (let col = 0; col < 8; col++) {
+    for (let row = 0; row < FIRST_ROWS; row++) {
+        for (let col = 0; col < MAX_SIZE; col++) {
             if ((row + col) % 2 === 1) {
                 board[row][col] = "black"
             }
         }
     }
 
-    for (let row = 5; row < 8; row++) {
-        for (let col = 0; col < 8; col++) {
+    for (let row = LAST_ROWS; row < MAX_SIZE; row++) {
+        for (let col = 0; col < MAX_SIZE; col++) {
             if ((row + col) % 2 === 1) {
                 board[row][col] = "white"
             }
