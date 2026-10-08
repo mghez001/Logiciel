@@ -102,13 +102,9 @@ function movePiece(targetRow, targetCol) {
     const col = selectedPiece.col
     const moves = getPossibleMoves(row, col)
 
-    let validMove = false
-
-    for (let i = 0; i < moves.length; i++) {
-        if (moves[i].row === targetRow && moves[i].col === targetCol) {
-            validMove = true
-        }
-    }
+    const validMove = moves.some(
+        move => move.row === targetRow && move.col === targetCol
+    )
 
     if (!validMove) {
         console.log("Invalid move")
