@@ -13,12 +13,7 @@ let currentPlayer = "white"
 let selectedPiece = null
 let gameOver = false
 
-function isInsideBoard(row, col) {
-    if (row >= 0 && row < 8 && col >= 0 && col < 8) {
-        return true
-    }
-    return false
-}
+function isInsideBoard(row, col) { return row >= 0 && row < 8 && col >= 0 && col < 8}
 
 function isPlayerPiece(piece, player) {
     if (piece === null) {
@@ -47,7 +42,7 @@ function isPlayerPiece(piece, player) {
 function selectPiece(row, col) {
     const piece = board[row][col]
 
-    if (gameOver === true) {
+    if (gameOver) {
         console.log("The game is over")
         return
     }
@@ -177,7 +172,7 @@ function movePiece(targetRow, targetCol) {
         }
     }
 
-    if (validMove === false) {
+    if (!validMove) {
         console.log("Invalid move")
         return
     }
@@ -278,7 +273,7 @@ function restartGame() {
 }
 
 function getGameStatus() {
-    if (gameOver === true) {
+    if (gameOver) {
         if (countPieces("white") === 0) {
             return "Black won"
         }
