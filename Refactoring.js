@@ -19,24 +19,7 @@ function isPlayerPiece(piece, player) {
     if (piece === null) {
         return false
     }
-
-    if (player === "white" && piece === "white") {
-        return true
-    }
-
-    if (player === "black" && piece === "black") {
-        return true
-    }
-
-    if (player === "white" && piece === "white-king") {
-        return true
-    }
-
-    if (player === "black" && piece === "black-king") {
-        return true
-    }
-
-    return false
+    return piece === player || piece === player + "king"
 }
 
 function selectPiece(row, col) {
