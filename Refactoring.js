@@ -48,6 +48,10 @@ function selectPiece(row, col) {
     console.log("Selected piece at " + row + ", " + col)
 }
 
+function isMoveValid(moves,row, col) {
+    if (isInsideBoard(row, col) && board[row][col] === null) { moves.push({ row: row, col: col }) }
+}
+
 function getPossibleMoves(row, col) {
     const piece = board[row][col]
     const moves = []
@@ -57,82 +61,22 @@ function getPossibleMoves(row, col) {
     }
 
     if (piece === "white" || piece === "white-king") {
-        if (isInsideBoard(row - 1, col - 1)) {
-            if (board[row - 1][col - 1] === null) {
-                moves.push({
-                    row: row - 1,
-                    col: col - 1
-                })
-            }
-        }
-
-        if (isInsideBoard(row - 1, col + 1)) {
-            if (board[row - 1][col + 1] === null) {
-                moves.push({
-                    row: row - 1,
-                    col: col + 1
-                })
-            }
-        }
+        isMoveValid(moves, row - 1, col - 1);
+        isMoveValid(moves, row - 1, col + 1);
     }
 
     if (piece === "black" || piece === "black-king") {
-        if (isInsideBoard(row + 1, col - 1)) {
-            if (board[row + 1][col - 1] === null) {
-                moves.push({
-                    row: row + 1,
-                    col: col - 1
-                })
-            }
-        }
-
-        if (isInsideBoard(row + 1, col + 1)) {
-            if (board[row + 1][col + 1] === null) {
-                moves.push({
-                    row: row + 1,
-                    col: col + 1
-                })
-            }
-        }
+        isMoveValid(moves, row + 1, col - 1);
+        isMoveValid(moves, row + 1, col + 1);
     }
 
     if (piece === "white-king" || piece === "black-king") {
-        if (isInsideBoard(row + 1, col - 1)) {
-            if (board[row + 1][col - 1] === null) {
-                moves.push({
-                    row: row + 1,
-                    col: col - 1
-                })
-            }
-        }
-
-        if (isInsideBoard(row + 1, col + 1)) {
-            if (board[row + 1][col + 1] === null) {
-                moves.push({
-                    row: row + 1,
-                    col: col + 1
-                })
-            }
-        }
-
-        if (isInsideBoard(row - 1, col - 1)) {
-            if (board[row - 1][col - 1] === null) {
-                moves.push({
-                    row: row - 1,
-                    col: col - 1
-                })
-            }
-        }
-
-        if (isInsideBoard(row - 1, col + 1)) {
-            if (board[row - 1][col + 1] === null) {
-                moves.push({
-                    row: row - 1,
-                    col: col + 1
-                })
-            }
-        }
+        isMoveValid(moves, row + 1, col - 1);
+        isMoveValid(moves, row + 1, col + 1);
+        isMoveValid(moves, row - 1, col - 1);
+        isMoveValid(moves, row - 1, col + 1);
     }
+
 
     return moves
 }
