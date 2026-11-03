@@ -13,3 +13,7 @@ test("0X123 donne moveForward", () => {
 test("0X789 donne moveBackward", () => {
   assert.deepEqual(parse("0X789"), ["moveBackward"]);
 });
+
+test("0XABC donne stop", () => {
+  assert.deepEqual(parse("0XABC"), ["stop"]);
+});
