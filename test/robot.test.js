@@ -9,3 +9,7 @@ test("une commande invalide retourne undefined", () => {
 test("0X123 donne moveForward", () => {
   assert.deepEqual(parse("0X123"), ["moveForward"]);
 });
+
+test("0X789 donne moveBackward", () => {
+  assert.deepEqual(parse("0X789"), ["moveBackward"]);
+});
