@@ -10,6 +10,10 @@ test("double la mise si les 2 derniers symboles sont identiques", () => {
   assert.equal(slotMachine(5, ["+", "%", "%"]), 10);
 });
 
-test("Verif consigne 1 plus fonctionnelle", () => {
-  assert.equal(slotMachine(5, ["+", "+", "%"]), 0);
+test("double la mise si les 2 premiers symboles sont identiques", () => {
+  assert.equal(slotMachine(5, ["+", "+", "%"]), 10);
+});
+
+test("x5 la mise si les 3 symboles sont identiques", () => {
+  assert.equal(slotMachine(5, ["+", "+", "+"]), 25);
 });
