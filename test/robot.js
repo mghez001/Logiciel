@@ -1,5 +1,8 @@
-const COMMANDS = { "0X123": "moveForward", "0X789": "moveBackward", "0XABC": "stop"};
-
+const COMMANDS = {
+  "0X123": { name: "moveForward" },
+  "0X789": { name: "moveBackward" },
+  "0XABC": { name: "stop" },
+};
 export function parse(stream) {
   return stream.split(" ").flatMap((token) => {
     const [count, code] = token.includes("*") ? token.split("*") : [1, token];
