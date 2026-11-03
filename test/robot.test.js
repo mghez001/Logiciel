@@ -3,7 +3,7 @@ import assert from "node:assert";
 import { parse } from "./robot.js";
 
 test("une commande inconnue lève une erreur", () => {
-  assert.throws(() => parse("0XFFF"));
+  assert.throws(() => parse("0XFFF 0XABC"));
 });
 
 test("une commande inconnue au milieu du flux lève une erreur", () => {
@@ -31,4 +31,30 @@ test("une même commande répétée", () => {
     parse("0X123 0X123"),
     ["moveForward", "moveForward"]
   );
+});
+
+test("une commande compressée est dépliée", () => {
+  assert.deepStrictEqual(
+    parse("3*0X123"),
+    ["moveForward", "moveForward", "moveForward"]
+  );
+});
+
+test("mélange de commandes compressées et non compressées", () => {
+  assert.deepStrictEqual(
+    parse("2*0X123 0X789 2*0XABC"),
+    ["moveForward", "moveForward", "moveBackward", "stop", "stop"]
+  );
+});
+
+test("un nombre d'occurrences à 1 fonctionne", () => {
+  assert.deepStrictEqual(parse("1*0XABC"), ["stop"]);
+});
+
+test("un nombre d'occurrences à 0 lève une erreur", () => {
+  assert.throws(() => parse("0*0X123"));
+});
+
+test("une commande compressée inconnue lève une erreur", () => {
+  assert.throws(() => parse("3*0XFFF"));
 });
