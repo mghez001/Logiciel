@@ -17,3 +17,7 @@ test("double la mise si les 2 premiers symboles sont identiques", () => {
 test("x5 la mise si les 3 symboles sont identiques", () => {
   assert.equal(slotMachine(5, ["+", "+", "+"]), 25);
 });
+
+test("x20 la mise si les 3 symboles sont des dollars", () => {
+  assert.equal(slotMachine(5, ["$", "$", "$"]), 100);
+});
