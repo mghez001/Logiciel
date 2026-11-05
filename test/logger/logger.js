@@ -4,6 +4,6 @@ const FILE = "log.txt";
 
 export const logger = {
   info(message) {
-    fs.appendFileSync(FILE, message + "\n");
+    fs.appendFileSync(FILE, `${new Date().toISOString()} : ${message}\n`);
   },
 };
