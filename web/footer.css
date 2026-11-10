@@ -2,4 +2,5 @@ footer {
     color: var(--color-primary);
     border: var(--border);
     font-size: 0.75rem;
+    padding: var(--space-s);
 }
