@@ -1,8 +1,9 @@
 import { ACCOUNT_LIST } from "./database.mjs";
+import { queryDatabase } from "./queryDatabase.mjs";
 
 export const accountQueryDAO = {
   retrieveAccountList() {
-    return ACCOUNT_LIST.map(({ creationDate, ...account }) => account);
+    return queryDatabase.accountSummaryList;
   },
 
   retrieveAccount(id) {
