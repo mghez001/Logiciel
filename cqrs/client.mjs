@@ -6,7 +6,7 @@ accountCommand.addAccount("Martin", "Alice");
 
 console.log("Liste :", accountQuery.getAccountList());
 
-accountCommand.saveAccount(id, "Dupont", "Jeanne");
+accountCommand.saveAccount(id, "Ghezal", "Mattis");
 
 console.log("Liste :", accountQuery.getAccountList());
 console.log("Compte :", accountQuery.getAccount(id));

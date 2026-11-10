@@ -1,16 +1,24 @@
 import { Account } from "./account.mjs";
 import { accountCommandDAO } from "./accountCommandDAO.mjs";
 import { queryDatabase } from "./queryDatabase.mjs";
+import { accountCache } from "./cache.mjs";
 
 function toSummary({ creationDate, ...summary }) {
   return summary;
+}
+
+function toCacheEntry({ lastName, firstName, ...rest }) {
+  return { ...rest, name: `${firstName} ${lastName}` };
 }
 
 export const accountCommand = {
   addAccount(lastName, firstName) {
     const account = new Account(undefined, lastName, firstName);
     accountCommandDAO.insertAccount(account);
+
     queryDatabase.accountSummaryList.push(toSummary(account));
+    accountCache[account.id] = toCacheEntry(account);
+
     return account.id;
   },
 
@@ -22,5 +30,6 @@ export const accountCommand = {
 
     const index = queryDatabase.accountSummaryList.findIndex((a) => a.id === id);
     queryDatabase.accountSummaryList[index] = toSummary(account);
+    accountCache[id] = toCacheEntry(account);
   },
 };
