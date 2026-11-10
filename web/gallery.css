@@ -9,6 +9,10 @@
 
         &:hover {
             animation: bounce 1s ease-in-out;
+
+            @media (prefers-reduced-motion: reduce) {
+                animation: none;
+            }
         }
     }
 }
